@@ -1,0 +1,70 @@
+Integrantes del Equipo 5:
+- David Rodríguez Fragoso A01748760
+	Fortalezas: 
+	- Bueno administrando proyectos
+	- Bueno programando en Python
+	- Buena comunicación oral y escrita
+	Áreas de oportunidad:
+	- Aprendizaje de nuevos lenguajes
+	- Documentación clara de código
+	Expectativas del bloque:
+	- Obtener bases firmes de sistemas multiagentes
+	- Aprovechar al máximo los conocimientos adquiridos en cursos anteriores
+
+- Erick Hernández Silva A01750170
+	Fortalezas:
+	- Proactivo en la realización del código de los proyectos
+	- Buen conocimiento de varios lenguajes de programación
+	- Bueno programando servidores y backend
+	- Eficiente a la hora de asesorar a otros miembros del equipo
+	Áreas de oportunidad:
+	- Muy susceptible al estrés
+	- Puede mejorar sus convenciones de programación
+	Expectativas del bloque:
+	- Aprender adecuadamente a modelar un sistema de agentes múltiples y su uso en la vida real
+	- Utilizar los conocimientos previos en el proyecto
+
+- Israel Sánchez Miranda A01378705
+	Fortalezas:
+	- Proactivo al codificar proyectos
+	- Manejo eficente del estrés
+	- Hábil desarrollo de algoritmos
+	Áreas de oportunidad:
+	- Puede mejorar su comunicación escrita
+	- Poca flexibilidad en diferentes IDEs
+	Expectativas del bloque:
+	- Adquirir buenos fundamentos sobre inteligencia artificial y sistemas multiagentes
+	- Relacionar los conceptos de gráficas computacionales para simular sistemas multiagentes
+
+- Renata de Luna Flores A01750484
+	Fortalezas:
+	- Manejo eficiente de los códigos de Python
+	- Proactiva al realizar documentación y redacción de proyectos
+	- Hábil desarrollo de algoritmos
+	Áreas de oportunidad:
+	- Su comunicación oral puede mejorar
+	- Poca confianza en sí misma
+	Expectativas del bloque:
+	- Aprender bien sobre gráficas computacionales
+	- Adquirir amplios conocimientos de sistemas multiagentes
+
+- Roberto Valdez Jasso A01746863
+	Fortalezas:
+	- Compresión y manejo eficiente de Python
+	- Buena compresión y desarrollo de algoritmos.
+	- Fácil reconocimiento y manejo de datos.
+	Áreas de oportunidad:
+	- Aprender a comunicar mejor mis ideas.
+	- Aprender nuevas formas de codificar en diferentes ambientes y lenguajes de programación.
+	Expectativas del bloque:
+	- Aprender aun más sobre la inteligencia artificial y sus métodos de aplicación.
+	- Aprender el funcionamiento de gráficos computacionales en Unity  
+
+Lo que esperamos lograr como equipo durante este bloque es un proyecto del que todos estemos satisfechos y que cumpla con los requerimientos enlistados en la descripción del mismo, 
+en temas de aprendizaje esperamos expandir nuestros conocimientos en inteligencia artificial, la cual es un área que no hemos explorado mucho, así como adquirir nuevos conocimientos
+y técnicas de programación en Python. Por la parte de gráficas computacionales esperamos aprender más sobre como estas son realizadas y como se implementan en el mismo proyecto para 
+tener un resultado que cumpla con las expectativas del curso.
+Nos comprometemos a organizarnos como equipo, delegando y dividiendo las diversas tareas que se presenten así como colaborar en la resolución de problemas y dudas que se presenten a lo
+largo de la realización del proyecto. De igual manera, nos hacemos resonsables de llevar a cabo reuniones semanales para acordar las actividades a realizar y revisar los avances del
+proyecto para lograr cumplir con los objetivos y logors que nos propusimos.
+
