@@ -12,14 +12,14 @@ public class WebClient : MonoBehaviour
         string url = "http://localhost:8585";
         using (UnityWebRequest www = UnityWebRequest.Get(url))
         {
-            byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(data);
-            www.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
+            //byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes();
+            //www.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
             www.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
             www.SetRequestHeader("Content-Type", "text/html");
             //www.SetRequestHeader("Content-Type", "application/json");
 
             yield return www.SendWebRequest();          // Talk to Python
-            if(www.isNetworkError || www.isHttpError)
+            if(www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
             {
                 Debug.Log(www.error);
             }
@@ -42,13 +42,13 @@ public class WebClient : MonoBehaviour
         //Vector3 fakePos = new Vector3(3.44f, 0, -15.707f);
         //string json = EditorJsonUtility.ToJson(fakePos);
         //StartCoroutine(SendData(call));
-        StartCoroutine(GetData());
+        StartCoroutine(GetDATA());
         //transform.localPosition
     }
 
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(GetData())
+        StartCoroutine(GetDATA());
     }
 }

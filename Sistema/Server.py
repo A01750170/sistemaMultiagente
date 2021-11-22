@@ -1,6 +1,9 @@
+import socketserver
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import logging
 import json
+from typing import Tuple
+
 from Traffic_Model import *
 
 def positionsToJSON(ps):
@@ -15,17 +18,19 @@ def positionsToJSON(ps):
     return json.dumps(posDICT)
 
 class Server(BaseHTTPRequestHandler):
-    def __init__(self):
-        self.model = TrafficModel(2)
+    model = TrafficModel(2)
+    def __init__(self, request: bytes, client_address: Tuple[str, int], server: socketserver.BaseServer):
+        super().__init__(request, client_address, server)
         self._set_response()
         resp = "{\"positions\":" + positionsToJSON(self.model.positions) + "}"
         self.wfile.write(resp.encode('utf-8'))
+
 
     def _set_response(self):
         self.send_response(200)
         self.send_header('Content-type', 'text/html')
         self.end_headers()
-        
+
     def do_GET(self):
         self.model.step()
         self._set_response()
