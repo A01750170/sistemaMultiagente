@@ -3,13 +3,13 @@ from mesa.time import RandomActivation
 import random
 
 class CarAgent(Agent):
-    def __init__(self, unique_id, model):
+    def __init__(self, unique_id, model, direccion):
         super().__init__(unique_id, model)
         random.seed()
         self.estado = 0 #Detenido 0, Disminuyendo 1, Avanzando 2
         self.cruzando = 0 #Fuera del cruce 0, En el cruce 1, Cruzado 3
         self.pos = [0, 0, 0]
-        self.direccion = 0 #Frente 0, Derecha 1, Izquierda 2, Atrás 3
+        self.direccion = direccion #x 0, -x 1, z 2, -< 3
         #self.sentido = 3 
 
     
