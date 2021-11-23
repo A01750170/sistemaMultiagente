@@ -34,7 +34,7 @@ class CarAgent(Agent):
         Si cruzamos cruce:
             Informar
         """
-        self.pos[0] += 1
+        self.pos[0] = 1
 
 class TrafficModel(Model):
     def __init__(self, cars):

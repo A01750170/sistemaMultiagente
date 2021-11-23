@@ -41,7 +41,7 @@ class Server(BaseHTTPRequestHandler):
         resp = "{\"data\":" + positionsToJSON(self.model.positions) + "}"
         self.wfile.write(resp.encode('utf-8'))
 
-def run(server_class=HTTPServer, handler_class=Server, port=8585): # 8080 para IBM CLoud
+def run(server_class=HTTPServer, handler_class=Server, port=8080): # 8080 para IBM CLoud
     logging.basicConfig(level=logging.INFO)
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)
