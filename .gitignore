@@ -4,6 +4,8 @@
 [Bb]uild/
 [Bb]uilds/
 Assets/AssetStoreTools*
+Sistema/.idea*
+Sistema/__pycache__
 
 # Visual Studio cache directory
 .vs/

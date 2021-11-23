@@ -21,20 +21,17 @@ class Server(BaseHTTPRequestHandler):
     model = TrafficModel(2)
     def __init__(self, request: bytes, client_address: Tuple[str, int], server: socketserver.BaseServer):
         super().__init__(request, client_address, server)
-        self._set_response()
-        resp = "{\"positions\":" + positionsToJSON(self.model.positions) + "}"
-        self.wfile.write(resp.encode('utf-8'))
 
 
     def _set_response(self):
         self.send_response(200)
-        self.send_header('Content-type', 'text/html')
+        self.send_header('Content-type', 'application/json')
         self.end_headers()
 
     def do_GET(self):
         self.model.step()
         self._set_response()
-        resp = "{\"data\":" + positionsToJSON(self.model.positions) + "}"
+        resp = "{\"positions\":" + positionsToJSON(self.model.positions) + "}"
         self.wfile.write(resp.encode('utf-8'))
 
     def do_POST(self):
@@ -44,7 +41,7 @@ class Server(BaseHTTPRequestHandler):
         resp = "{\"data\":" + positionsToJSON(self.model.positions) + "}"
         self.wfile.write(resp.encode('utf-8'))
 
-def run(server_class=HTTPServer, handler_class=Server, port=8585):
+def run(server_class=HTTPServer, handler_class=Server, port=8585): # 8080 para IBM CLoud
     logging.basicConfig(level=logging.INFO)
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)
