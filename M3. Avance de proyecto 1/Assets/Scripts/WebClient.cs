@@ -35,8 +35,7 @@ public class WebClient : MonoBehaviour
                 Dictionary<string, List<Dictionary<string,int>>> pos = JsonConvert.DeserializeObject<Dictionary<string, List<Dictionary<string,int>>>>(www.downloadHandler.text);
                 Debug.Log(pos["positions"][0]["x"]);
                 carro1.transform.position += new Vector3(pos["positions"][0]["x"],pos["positions"][0]["y"],pos["positions"][0]["z"]);
-                //carro2.transform.position = new Vector3(pos["positions"][0]["x"],pos["positions"][0]["y"],pos["positions"][0]["z"]);
-                //carro1.transform.position += new Vector3(-1,0,0);
+                carro2.transform.position += new Vector3(pos["positions"][1]["x"],pos["positions"][1]["y"],pos["positions"][1]["z"]);
             }
         }
 
