@@ -85,16 +85,16 @@ class Server(BaseHTTPRequestHandler):
                 for i in range(6,10):
                     # Si lo hay, lo guardamos en una variable auxiliar
                     semaforoAdyacente = i - 6
-                    if semaforoActual % 2 == 0 and semaforoAdyacente % 2 != 0 and self.model.schedule.agents[i].estado == 2:
+                    if semaforoActual % 2 == 0 and semaforoAdyacente % 2 != 0 and self.model.schedule.agents[i].estado == "verde":
                         puedePasar = False
-                    if semaforoActual % 2 != 0 and semaforoAdyacente % 2 == 0 and self.model.schedule.agents[i].estado == 2:
+                    if semaforoActual % 2 != 0 and semaforoAdyacente % 2 == 0 and self.model.schedule.agents[i].estado == "verde":
                         puedePasar = False
                 # Si no hay ningún semáforo en verde, cambiamos el estado a verde
                 if puedePasar:
-                    self.model.schedule.agents[post_data["semaforo"] + 6].estado = 2
+                    self.model.schedule.agents[post_data["semaforo"] + 6].estado = "verde"
                 # Si hay un semaforo en verde, cambiamos el estado a rojo
                 elif not puedePasar:
-                    self.model.schedule.agents[post_data["semaforo"] + 6].estado = 0
+                    self.model.schedule.agents[post_data["semaforo"] + 6].estado = "rojo"
                 self.wfile.write(resp.encode('utf-8'))
 
             # Cuando termina su cruce un carro, el semáforo quita la cantidad de coches que están cruzando
@@ -112,26 +112,32 @@ class Server(BaseHTTPRequestHandler):
                 for i in range(6, 10):
                     # Si lo hay, lo guardamos en una variable auxiliar
                     semaforoAdyacente = i - 6
-                    if semaforoActual % 2 == 0 and semaforoAdyacente % 2 == 0 and self.model.schedule.agents[
-                        i].cruzando > 0:
-                        tieneCochesCruzando = True
-                    if semaforoActual % 2 == 0 and semaforoAdyacente % 2 == 0 and self.model.schedule.agents[
-                        i].cruzando > 0:
-                        tieneCochesCruzando = True
+                    if semaforoActual % 2 == 0:
+                        if semaforoActual % 2 == 0 and semaforoAdyacente % 2 == 0 and self.model.schedule.agents[i].cruzando > 0:
+                                tieneCochesCruzando = True
+                        if semaforoActual % 2 == 0 and semaforoAdyacente % 2 == 0 and self.model.schedule.agents[i].cruzando > 0:
+                                tieneCochesCruzando = True
+                    else:
+                        if semaforoActual % 2 == 1 and semaforoAdyacente % 2 == 1 and self.model.schedule.agents[i].cruzando > 0:
+                                tieneCochesCruzando = True
+                        if semaforoActual % 2 == 1 and semaforoAdyacente % 2 ==  1 and self.model.schedule.agents[i].cruzando > 0:
+                                tieneCochesCruzando = True
                 # Si tiene coches cruzando, ambos semaforos se quedan en verde
                 if tieneCochesCruzando:
-                    self.model.schedule.agents[semaforoActual + 6].estado = 2
+                    self.model.schedule.agents[semaforoActual + 6].estado = "verde"
+
                 # Si hay un semaforo en verde, cambiamos el estado a rojo
                 elif not tieneCochesCruzando:
-                    self.model.schedule.agents[semaforoActual + 6].estado = 0
+                    self.model.schedule.agents[semaforoActual + 6].estado = "rojo"
                     if semaforoActual == 0 or semaforoActual == 1:
-                        self.model.schedule.agents[semaforoActual + 4].estado = 0
+                        self.model.schedule.agents[semaforoActual + 4].estado = "rojo"
+
                     elif semaforoActual == 2 or semaforoActual == 3:
-                        self.model.schedule.agents[semaforoActual + 4].estado = 0
+                        self.model.schedule.agents[semaforoActual + 4].estado = "rojo"
                     # Revisamos si hay un semaforo no adyacente con vehículos esperando para cambiar su estado
                     for i in range(6, 10):
                         if self.model.schedule.agents[i].cruzando > 0:
-                            self.model.schedule.agents[i].estado = 2
+                            self.model.schedule.agents[i].estado = "verde"
                     self.wfile.write(resp.encode('utf-8'))
 
 

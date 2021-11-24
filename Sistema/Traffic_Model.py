@@ -49,7 +49,7 @@ class Light(Agent):
     def __init__(self, unique_id, model):
         super().__init__(unique_id, model)
         random.seed()
-        self.estado = 1  # 0 = rojo | 1 = amarillo | 2 = verde
+        self.estado = "amarillo"  # 0 = rojo | 1 = amarillo | 2 = verde
         self.cruzando = 0  # Numero de autos cruzando
 
     def step(self):
