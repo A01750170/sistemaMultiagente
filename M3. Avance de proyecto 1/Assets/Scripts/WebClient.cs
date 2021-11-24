@@ -44,12 +44,12 @@ public class WebClient : MonoBehaviour
                 //Debug.Log(tPos);
                 //string json = JsonConvert.SerializeObject(www.downloadHandler.text);
                 Dictionary<string, List<Dictionary<string,int>>> pos = JsonConvert.DeserializeObject<Dictionary<string, List<Dictionary<string,int>>>>(www.downloadHandler.text);
-                Debug.Log("X");
-                Debug.Log(pos["positions"][1]["x"]);
-                Debug.Log("Y");
-                Debug.Log(pos["positions"][1]["y"]);
-                Debug.Log("Z");
-                Debug.Log(pos["positions"][1]["z"]);
+                //Debug.Log("X");
+                //Debug.Log(pos["positions"][1]["x"]);
+                //Debug.Log("Y");
+                //Debug.Log(pos["positions"][1]["y"]);
+                //Debug.Log("Z");
+                //Debug.Log(pos["positions"][1]["z"]);
                 // Se actualiza la posición del carro 1
                 carro1.transform.position += new Vector3(pos["positions"][0]["x"],pos["positions"][0]["y"],pos["positions"][0]["z"]);
                 colliderC1.transform.position += new Vector3(pos["positions"][0]["x"],pos["positions"][0]["y"],pos["positions"][0]["z"]);

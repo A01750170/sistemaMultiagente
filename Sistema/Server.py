@@ -37,11 +37,11 @@ class Server(BaseHTTPRequestHandler):
     def do_POST(self):
         content_length = int(self.headers['Content-Length'])
         post_data = json.loads(self.rfile.read(content_length))
+        self._set_response()
+        resp = "Done"
         print(post_data)
         self.model.schedule.agents[post_data["carro"]].estado = post_data["estado"]
-        #self._set_response()
-        #resp = "{\"data\":" + positionsToJSON(self.model.positions) + "}"
-        #self.wfile.write(resp.encode('utf-8'))
+        self.wfile.write(resp.encode('utf-8'))
 
 def run(server_class=HTTPServer, handler_class=Server, port=8080): # 8080 para IBM CLoud
     logging.basicConfig(level=logging.INFO)
