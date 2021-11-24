@@ -54,11 +54,11 @@ public class DeteccionCarros : MonoBehaviour
         yield return request.SendWebRequest();
         
         //print(request.downloadHandler.text);
-        if (request.downloadHandler.text == "Done"){
-            print($"Soy el camrrito {carro} y pamse el semamforo {semaforo}");
-        }else{
-            print("ROMANCITO AYUDANOS POR FAOVR");
-        }
+        //if (request.downloadHandler.text == "Done"){
+            //print($"Soy el camrrito {carro} y pamse el semamforo {semaforo}");
+        //}else{
+            //print("ROMANCITO AYUDANOS POR FAOVR");
+        //}
     }
 
     void OnTriggerEnter(Collider other){
@@ -66,9 +66,11 @@ public class DeteccionCarros : MonoBehaviour
             StartCoroutine(postDataCarro(0));
         }
         if(this.tag == "CFrente" && other.tag == "SEntrada"){
+            print($"Soy el camrrito {carro} y pamse el semamforo {semaforo}");
             StartCoroutine(postDataSemaforo(semaforo, true));
         }
         if(this.tag == "CFrente" && other.tag == "SSalida"){
+            print($"Soy el camrrito {carro} terminé mi cruce");
             StartCoroutine(postDataSemaforo(semaforo, false));
         }
         

@@ -59,6 +59,7 @@ class Server(BaseHTTPRequestHandler):
                     for iCarro in self.cars[i-6]:
                         self.model.schedule.agents[iCarro].estado = 0
 
+
             # Enviamos las posiciones
             if self.path.endswith("/carro"):
                 self.model.step()
@@ -153,6 +154,15 @@ class Server(BaseHTTPRequestHandler):
                     for i in range(6, 10):
                         if self.model.schedule.agents[i].cruzando > 0:
                             self.model.schedule.agents[i].estado = "verde"
+
+                    # Si ningun coche tiene autos esperando, los ponemos todos en amarillo
+                    hayCochesCruzandoOEsperando = False
+                    for i in range(6, 10):
+                        if self.model.schedule.agents[i].cruzando > 0:
+                            hayCochesCruzandoOEsperando = True
+                    if not hayCochesCruzandoOEsperando:
+                        for i in range(6, 10):
+                            self.model.schedule.agents[i].estado = "amarillo"
                     self.wfile.write(resp.encode('utf-8'))
 
 

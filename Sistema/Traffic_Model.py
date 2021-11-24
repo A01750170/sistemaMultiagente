@@ -1,12 +1,13 @@
 from mesa import Agent, Model
 from mesa.time import RandomActivation
 import random
+from random import randint
 
 class CarAgent(Agent):
     def __init__(self, unique_id, model, direccion):
         super().__init__(unique_id, model)
         random.seed()
-        self.estado = 1 #Detenido 0, Disminuyendo 1, Avanzando 2
+        self.estado = 2 #Detenido 0, Disminuyendo 1, Avanzando 2
         self.cruzando = 0 #Fuera del cruce 0, En el cruce 1, Cruzado 3
         self.pos = [0, 0, 0]
         self.direccion = direccion #x 0, -x 1, z 2, -z 3
@@ -35,14 +36,16 @@ class CarAgent(Agent):
             Informar
         """
         # Dependiendo del estado se cambia su velocidad en la dirección del carro
+        #velocidad = randint(1,4)
+        velocidad = 1
         if self.direccion == 0:
-            self.pos[0] = self.estado
+            self.pos[0] = self.estado * velocidad
         elif self.direccion == 1:
-            self.pos[0] = -self.estado
+            self.pos[0] = -self.estado * velocidad
         elif self.direccion == 2:
-            self.pos[1] = self.estado
+            self.pos[1] = self.estado * velocidad
         elif self.direccion == 3:
-            self.pos[1] = -self.estado
+            self.pos[1] = -self.estado * velocidad
 
 
 class Light(Agent):
