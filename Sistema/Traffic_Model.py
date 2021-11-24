@@ -57,10 +57,10 @@ class Light(Agent):
         Revisa cuantos
         """
         # Si autos cruzando, se cambia el color del semáforo
-        if self.cruzando == 0:
-            self.estado = 1
-        elif self.cruzando > 0:
-            self.estado = 2
+        #if self.cruzando == 0:
+            #self.estado = 1
+        #elif self.cruzando > 0:
+            #self.estado = 2
 
 class TrafficModel(Model):
     def __init__(self, cars, lights):

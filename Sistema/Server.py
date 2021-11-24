@@ -16,6 +16,21 @@ def positionsToJSON(ps):
         }
         posDICT.append(pos)
     return json.dumps(posDICT)
+def semaforosToJSON(ps):
+    posDICT = []
+    semaforo = 0
+    for i in range(6,10):
+        try:
+            pos = {
+                "semaforo": semaforo,
+                "estado" : ps[i].estado,
+                "cruzando" : ps[i].cruzando
+            }
+            semaforo += 1
+        except:
+            pass
+        posDICT.append(pos)
+    return json.dumps(posDICT)
 
 class Server(BaseHTTPRequestHandler):
     model = TrafficModel(6,4)
@@ -38,7 +53,8 @@ class Server(BaseHTTPRequestHandler):
             elif self.path.endswith("semaforo"):
                 self.model.step()
                 self._set_response()
-                resp = "{\"Coches Cruzando\":" + str(self.model.schedule.agents[6].cruzando) + "}"
+                #resp = "{\"Coches Cruzando\":" + str(self.model.schedule.agents[6].cruzando) + "}"
+                resp = "{\"semaforos\":" + semaforosToJSON(self.model.schedule.agents) + "}"
                 self.wfile.write(resp.encode('utf-8'))
         except IOError:
             self.send_error(404, "Error")
@@ -59,9 +75,26 @@ class Server(BaseHTTPRequestHandler):
                 content_length = int(self.headers['Content-Length'])
                 post_data = json.loads(self.rfile.read(content_length))
                 self._set_response()
+                semaforoActual = post_data["semaforo"]
+                cochesCruzando = post_data["cruza"]
                 resp = "Done"
                 print(post_data)
-                self.model.schedule.agents[post_data["semaforo"]+6].cruzando += post_data["cruza"]
+                puedePasar = True
+                self.model.schedule.agents[semaforoActual + 6].cruzando += cochesCruzando
+                # Revisamos si hay algun otro semaforo en verde
+                for i in range(6,10):
+                    # Si lo hay, lo guardamos en una variable auxiliar
+                    semaforoAdyacente = i - 6
+                    if semaforoActual % 2 == 0 and semaforoAdyacente % 2 != 0 and self.model.schedule.agents[i].estado == 2:
+                        puedePasar = False
+                    if semaforoActual % 2 != 0 and semaforoAdyacente % 2 == 0 and self.model.schedule.agents[i].estado == 2:
+                        puedePasar = False
+                # Si no hay ningún semáforo en verde, cambiamos el estado a verde
+                if puedePasar:
+                    self.model.schedule.agents[post_data["semaforo"] + 6].estado = 2
+                # Si hay un semaforo en verde, cambiamos el estado a rojo
+                elif not puedePasar:
+                    self.model.schedule.agents[post_data["semaforo"] + 6].estado = 0
                 self.wfile.write(resp.encode('utf-8'))
 
             # Cuando termina su cruce un carro, el semáforo quita la cantidad de coches que están cruzando

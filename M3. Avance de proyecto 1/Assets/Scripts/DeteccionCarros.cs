@@ -11,9 +11,10 @@ public class DeteccionCarros : MonoBehaviour
         public int estado;
     }
     public int carro;
-    datosCarro datos;
+    public int semaforo;
     IEnumerator postDataCarro(int estado)
     {
+        datosCarro datos;
         datos.carro = carro;
         datos.estado = estado;
         string url = "http://localhost:8080/carro";
@@ -23,38 +24,38 @@ public class DeteccionCarros : MonoBehaviour
         request.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
         request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
-        print("--------------------------------");
-        print("Etrné");
-        print("--------------------------------");
         yield return request.SendWebRequest();
-        
-        print(request.downloadHandler.text);
-        if (request.downloadHandler.text == "Done"){
-            print("DESBONK");
-        }else{
-            print("ROMANCITO AYUDANOS POR FAOVR");
-        }
+        //print(request.downloadHandler.text);
     }
 
-    IEnumerator postDataSemaforo(int estado)
+    public struct datosSemafoto{
+        public int semaforo;
+        public int cruza;
+    }
+
+    IEnumerator postDataSemaforo(int semaforo, bool entrada)
     {
-        datos.carro = carro;
-        datos.estado = estado;
-        string url = "http://localhost:8080/carro";
+        datosSemafoto datos;
+        string url;
+        datos.semaforo = semaforo;
+        datos.cruza = 1;
+        if(entrada){
+            url = "http://localhost:8080/semaforoEntrada";
+        }
+        else{
+            url = "http://localhost:8080/semaforoSalida";
+        }
         string json = JsonUtility.ToJson(datos);
         var request = new UnityWebRequest(url,"POST");
         byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
         request.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
         request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
-        print("--------------------------------");
-        print("Etrné");
-        print("--------------------------------");
         yield return request.SendWebRequest();
         
-        print(request.downloadHandler.text);
+        //print(request.downloadHandler.text);
         if (request.downloadHandler.text == "Done"){
-            print("DESBONK");
+            print($"Soy el camrrito {carro} y pamse el semamforo {semaforo}");
         }else{
             print("ROMANCITO AYUDANOS POR FAOVR");
         }
@@ -63,6 +64,12 @@ public class DeteccionCarros : MonoBehaviour
     void OnTriggerEnter(Collider other){
         if((other.tag == "CFrente") || (other.tag == "CAtras")){
             StartCoroutine(postDataCarro(0));
+        }
+        if(this.tag == "CFrente" && other.tag == "SEntrada"){
+            StartCoroutine(postDataSemaforo(semaforo, true));
+        }
+        if(this.tag == "CFrente" && other.tag == "SSalida"){
+            StartCoroutine(postDataSemaforo(semaforo, false));
         }
         
     }
