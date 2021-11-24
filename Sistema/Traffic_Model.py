@@ -6,10 +6,10 @@ class CarAgent(Agent):
     def __init__(self, unique_id, model, direccion):
         super().__init__(unique_id, model)
         random.seed()
-        self.estado = 0 #Detenido 0, Disminuyendo 1, Avanzando 2
+        self.estado = 1 #Detenido 0, Disminuyendo 1, Avanzando 2
         self.cruzando = 0 #Fuera del cruce 0, En el cruce 1, Cruzado 3
         self.pos = [0, 0, 0]
-        self.direccion = direccion #x 0, -x 1, z 2, -< 3
+        self.direccion = direccion #x 0, -x 1, z 2, -z 3
         #self.sentido = 3 
 
     
@@ -34,7 +34,15 @@ class CarAgent(Agent):
         Si cruzamos cruce:
             Informar
         """
-        self.pos[0] = 1
+        # Dependiendo del estado se cambia su velocidad en la dirección del carro
+        if self.direccion == 0:
+            self.pos[0] = self.estado
+        elif self.direccion == 1:
+            self.pos[0] = -self.estado
+        elif self.direccion == 2:
+            self.pos[1] = self.estado
+        elif self.direccion == 3:
+            self.pos[1] = -self.estado
 
 class TrafficModel(Model):
     def __init__(self, cars):
@@ -42,9 +50,9 @@ class TrafficModel(Model):
         self.schedule = RandomActivation(self)
         self.running = True
         self.positions = []
-
+        directions = [1, 3, 0, 0, 1, 2]
         for i in range(self.cars):
-            car = CarAgent("Carro " + str(i), self)
+            car = CarAgent("Carro " + str(i), self, directions[i])
             self.schedule.add(car)
             self.positions.append(car.pos)
 

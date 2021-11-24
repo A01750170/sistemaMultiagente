@@ -18,7 +18,7 @@ def positionsToJSON(ps):
     return json.dumps(posDICT)
 
 class Server(BaseHTTPRequestHandler):
-    model = TrafficModel(2)
+    model = TrafficModel(6)
     def __init__(self, request: bytes, client_address: Tuple[str, int], server: socketserver.BaseServer):
         super().__init__(request, client_address, server)
 

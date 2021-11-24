@@ -7,7 +7,18 @@ using Newtonsoft.Json;
 public class WebClient : MonoBehaviour
 {
     public GameObject carro1;
+    public GameObject colliderC1;
     public GameObject carro2;
+    public GameObject colliderC2;
+    public GameObject carro3;
+    public GameObject colliderC3;
+    public GameObject carro4;
+    public GameObject colliderC4;
+    public GameObject carro5;
+    public GameObject colliderC5;
+    public GameObject carro6;
+    public GameObject colliderC6;
+
     // IEnumerator - yield return
     IEnumerator GetDATA()
     {
@@ -33,9 +44,30 @@ public class WebClient : MonoBehaviour
                 //Debug.Log(tPos);
                 //string json = JsonConvert.SerializeObject(www.downloadHandler.text);
                 Dictionary<string, List<Dictionary<string,int>>> pos = JsonConvert.DeserializeObject<Dictionary<string, List<Dictionary<string,int>>>>(www.downloadHandler.text);
-                Debug.Log(pos["positions"][0]["x"]);
+                Debug.Log("X");
+                Debug.Log(pos["positions"][1]["x"]);
+                Debug.Log("Y");
+                Debug.Log(pos["positions"][1]["y"]);
+                Debug.Log("Z");
+                Debug.Log(pos["positions"][1]["z"]);
+                // Se actualiza la posición del carro 1
                 carro1.transform.position += new Vector3(pos["positions"][0]["x"],pos["positions"][0]["y"],pos["positions"][0]["z"]);
+                colliderC1.transform.position += new Vector3(pos["positions"][0]["x"],pos["positions"][0]["y"],pos["positions"][0]["z"]);
+                // Se actualiza la posición del carro 2
                 carro2.transform.position += new Vector3(pos["positions"][1]["x"],pos["positions"][1]["y"],pos["positions"][1]["z"]);
+                colliderC2.transform.position += new Vector3(pos["positions"][1]["x"],pos["positions"][1]["y"],pos["positions"][1]["z"]);
+                // Se actualiza la posición del carro 3
+                carro3.transform.position += new Vector3(pos["positions"][2]["x"],pos["positions"][2]["y"],pos["positions"][2]["z"]);
+                colliderC3.transform.position += new Vector3(pos["positions"][2]["x"],pos["positions"][2]["y"],pos["positions"][2]["z"]);
+                // Se actualiza la posición del carro 4
+                carro4.transform.position += new Vector3(pos["positions"][3]["x"],pos["positions"][3]["y"],pos["positions"][3]["z"]);
+                colliderC4.transform.position += new Vector3(pos["positions"][3]["x"],pos["positions"][3]["y"],pos["positions"][3]["z"]);
+                // Se actualiza la posición del carro 5
+                carro5.transform.position += new Vector3(pos["positions"][4]["x"],pos["positions"][4]["y"],pos["positions"][4]["z"]);
+                colliderC5.transform.position += new Vector3(pos["positions"][4]["x"],pos["positions"][4]["y"],pos["positions"][4]["z"]);
+                // Se actualiza la posición del carro 6
+                carro6.transform.position += new Vector3(pos["positions"][5]["x"],pos["positions"][5]["y"],pos["positions"][5]["z"]);
+                colliderC6.transform.position += new Vector3(pos["positions"][5]["x"],pos["positions"][5]["y"],pos["positions"][5]["z"]);
             }
         }
 
