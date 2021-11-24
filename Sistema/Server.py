@@ -102,10 +102,38 @@ class Server(BaseHTTPRequestHandler):
                 content_length = int(self.headers['Content-Length'])
                 post_data = json.loads(self.rfile.read(content_length))
                 self._set_response()
+                semaforoActual = post_data["semaforo"] # Semaforo que termino su cruce
+                cochesCruzando = post_data["cruza"] # Coches que estan terminando su cruce
                 resp = "Done"
                 print(post_data)
-                self.model.schedule.agents[post_data["semaforo"] + 6].cruzando -= post_data["cruza"]
-                self.wfile.write(resp.encode('utf-8'))
+                tieneCochesCruzando = False
+                self.model.schedule.agents[semaforoActual + 6].cruzando -= cochesCruzando
+                # Revisar si el semaforo adyacente tiene coches cruzando
+                for i in range(6, 10):
+                    # Si lo hay, lo guardamos en una variable auxiliar
+                    semaforoAdyacente = i - 6
+                    if semaforoActual % 2 == 0 and semaforoAdyacente % 2 == 0 and self.model.schedule.agents[
+                        i].cruzando > 0:
+                        tieneCochesCruzando = True
+                    if semaforoActual % 2 == 0 and semaforoAdyacente % 2 == 0 and self.model.schedule.agents[
+                        i].cruzando > 0:
+                        tieneCochesCruzando = True
+                # Si tiene coches cruzando, ambos semaforos se quedan en verde
+                if tieneCochesCruzando:
+                    self.model.schedule.agents[semaforoActual + 6].estado = 2
+                # Si hay un semaforo en verde, cambiamos el estado a rojo
+                elif not tieneCochesCruzando:
+                    self.model.schedule.agents[semaforoActual + 6].estado = 0
+                    if semaforoActual == 0 or semaforoActual == 1:
+                        self.model.schedule.agents[semaforoActual + 4].estado = 0
+                    elif semaforoActual == 2 or semaforoActual == 3:
+                        self.model.schedule.agents[semaforoActual + 4].estado = 0
+                    # Revisamos si hay un semaforo no adyacente con vehículos esperando para cambiar su estado
+                    for i in range(6, 10):
+                        if self.model.schedule.agents[i].cruzando > 0:
+                            self.model.schedule.agents[i].estado = 2
+                    self.wfile.write(resp.encode('utf-8'))
+
 
         except IOError:
             self.send_error(404, "Error")
