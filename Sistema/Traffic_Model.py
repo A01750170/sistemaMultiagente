@@ -44,8 +44,26 @@ class CarAgent(Agent):
         elif self.direccion == 3:
             self.pos[1] = -self.estado
 
+
+class Light(Agent):
+    def __init__(self, unique_id, model):
+        super().__init__(unique_id, model)
+        random.seed()
+        self.estado = 1  # 0 = rojo | 1 = amarillo | 2 = verde
+        self.cruzando = 0  # Numero de autos cruzando
+
+    def step(self):
+        """
+        Revisa cuantos
+        """
+        # Si autos cruzando, se cambia el color del semáforo
+        if self.cruzando == 0:
+            self.estado = 1
+        elif self.cruzando > 0:
+            self.estado = 2
+
 class TrafficModel(Model):
-    def __init__(self, cars):
+    def __init__(self, cars, lights):
         self.cars = cars
         self.schedule = RandomActivation(self)
         self.running = True
@@ -55,6 +73,9 @@ class TrafficModel(Model):
             car = CarAgent("Carro " + str(i), self, directions[i])
             self.schedule.add(car)
             self.positions.append(car.pos)
+        for i in range(lights):
+            light = Light("Semaforo " + str(i), self)
+            self.schedule.add(light)
 
     
     def step(self):

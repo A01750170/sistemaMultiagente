@@ -22,7 +22,7 @@ public class WebClient : MonoBehaviour
     // IEnumerator - yield return
     IEnumerator GetDATA()
     {
-        string url = "http://localhost:8080";
+        string url = "http://localhost:8080/carro";
         using (UnityWebRequest www = UnityWebRequest.Get(url))
         {
             //byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes();
