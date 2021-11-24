@@ -34,6 +34,7 @@ def semaforosToJSON(ps):
 
 class Server(BaseHTTPRequestHandler):
     model = TrafficModel(6,4)
+    cars = [[0, 4], [1], [2, 3], [5]]
     def __init__(self, request: bytes, client_address: Tuple[str, int], server: socketserver.BaseServer):
         super().__init__(request, client_address, server)
 
@@ -45,6 +46,20 @@ class Server(BaseHTTPRequestHandler):
 
     def do_GET(self):
         try:
+            # Revisamos los semaforos y actualizamos estados
+            for i in range(6,10):
+                semaforo = self.model.schedule.agents[i]
+                if semaforo.estado == "verde":
+                    for iCarro in self.cars[i-6]:
+                        self.model.schedule.agents[iCarro].estado = 2
+                elif semaforo.estado == "amarillo":
+                    for iCarro in self.cars[i-6]:
+                        self.model.schedule.agents[iCarro].estado = 1
+                elif semaforo.estado == "rojo":
+                    for iCarro in self.cars[i-6]:
+                        self.model.schedule.agents[iCarro].estado = 0
+
+            # Enviamos las posiciones
             if self.path.endswith("/carro"):
                 self.model.step()
                 self._set_response()
