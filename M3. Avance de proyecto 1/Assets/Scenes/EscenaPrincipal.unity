@@ -148,7 +148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b28ce65a3c814544b31167d699871d0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7499
+      value: -7527
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b28ce65a3c814544b31167d699871d0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -156,7 +156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b28ce65a3c814544b31167d699871d0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14297
+      value: 12058
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b28ce65a3c814544b31167d699871d0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -193,6 +193,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3b28ce65a3c814544b31167d699871d0, type: 3}
       propertyPath: m_Name
       value: Car2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 3b28ce65a3c814544b31167d699871d0, type: 3}
+      propertyPath: m_TagString
+      value: CFrente
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b28ce65a3c814544b31167d699871d0, type: 3}
@@ -240,9 +244,10 @@ GameObject:
   m_Component:
   - component: {fileID: 70459796}
   - component: {fileID: 70459797}
+  - component: {fileID: 70459798}
   m_Layer: 0
   m_Name: ColliderS4
-  m_TagString: Untagged
+  m_TagString: SSalida
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -255,7 +260,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 70459795}
   m_LocalRotation: {x: -0, y: 0.7115418, z: -0, w: 0.7026439}
-  m_LocalPosition: {x: -715, y: -592.42944, z: -97}
+  m_LocalPosition: {x: -715, y: -603, z: -97}
   m_LocalScale: {x: 100, y: 100.000015, z: 100}
   m_Children: []
   m_Father: {fileID: 403492977}
@@ -274,6 +279,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.1944647, y: 1, z: 1.9670888}
   m_Center: {x: 0.5550339, y: 0, z: 0.8526736}
+--- !u!54 &70459798
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70459795}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &154415142 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3b28ce65a3c814544b31167d699871d0, type: 3}
@@ -315,6 +336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carro: 0
+  semaforo: 0
 --- !u!1 &184607427 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 796d2f403a672f64e9d7dbb0ae388da6, type: 3}
@@ -326,7 +348,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16438
+  m_Name: pb_Mesh16440
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -516,7 +538,7 @@ GameObject:
   - component: {fileID: 286628662}
   m_Layer: 0
   m_Name: ColliderC6
-  m_TagString: Untagged
+  m_TagString: CAtras
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -614,7 +636,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2a051df060cff1942a6936afd7145a88, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a051df060cff1942a6936afd7145a88, type: 3}
       propertyPath: m_LocalPosition.x
@@ -658,7 +680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2a051df060cff1942a6936afd7145a88, type: 3}
       propertyPath: m_Name
-      value: traffic_light_ped
+      value: Semaforo1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a051df060cff1942a6936afd7145a88, type: 3}
@@ -672,9 +694,10 @@ GameObject:
   m_Component:
   - component: {fileID: 366328150}
   - component: {fileID: 366328151}
+  - component: {fileID: 366328152}
   m_Layer: 0
   m_Name: ColliderE1
-  m_TagString: Untagged
+  m_TagString: SEntrada
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -687,7 +710,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 366328149}
   m_LocalRotation: {x: -0, y: 0.7115418, z: -0, w: 0.7026439}
-  m_LocalPosition: {x: 332, y: -524.42944, z: 1053}
+  m_LocalPosition: {x: 332, y: -603, z: 1053}
   m_LocalScale: {x: 100.00002, y: 100.000015, z: 100.00002}
   m_Children: []
   m_Father: {fileID: 66260979}
@@ -706,6 +729,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.049792, y: 1, z: 3.1433883}
   m_Center: {x: -0.017303925, y: 0, z: 1.0716976}
+--- !u!54 &366328152
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366328149}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &384611325
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,7 +851,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 402ebf36ca975804e945561e4aae830b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1517
+      value: -1389
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 402ebf36ca975804e945561e4aae830b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -820,7 +859,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 402ebf36ca975804e945561e4aae830b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9761
+      value: 9759
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 402ebf36ca975804e945561e4aae830b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -857,6 +896,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 402ebf36ca975804e945561e4aae830b, type: 3}
       propertyPath: m_Name
       value: Car1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 402ebf36ca975804e945561e4aae830b, type: 3}
+      propertyPath: m_TagString
+      value: CFrente
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 402ebf36ca975804e945561e4aae830b, type: 3}
@@ -925,6 +968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carro: 1
+  semaforo: 1
 --- !u!54 &434726781
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -953,7 +997,7 @@ GameObject:
   - component: {fileID: 435795770}
   m_Layer: 0
   m_Name: ColliderC1
-  m_TagString: Untagged
+  m_TagString: CAtras
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -979,7 +1023,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435795769}
   m_LocalRotation: {x: 0, y: 0.7115418, z: 0, w: 0.7026439}
-  m_LocalPosition: {x: -2088, y: 2403, z: 9648}
+  m_LocalPosition: {x: -1960, y: 2403, z: 9646}
   m_LocalScale: {x: 100.00003, y: 100.000015, z: 100.00003}
   m_Children: []
   m_Father: {fileID: 0}
@@ -994,7 +1038,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2a051df060cff1942a6936afd7145a88, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a051df060cff1942a6936afd7145a88, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1038,7 +1082,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2a051df060cff1942a6936afd7145a88, type: 3}
       propertyPath: m_Name
-      value: traffic_light_ped (3)
+      value: Semaforo0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a051df060cff1942a6936afd7145a88, type: 3}
@@ -1067,7 +1111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9ee6fcfb74c473847b77991c8628a891, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6158
+      value: -10057
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9ee6fcfb74c473847b77991c8628a891, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1075,7 +1119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9ee6fcfb74c473847b77991c8628a891, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7680
+      value: 7674
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9ee6fcfb74c473847b77991c8628a891, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1113,6 +1157,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car4
       objectReference: {fileID: 0}
+    - target: {fileID: 1151388028547126963, guid: 9ee6fcfb74c473847b77991c8628a891, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151388028547126963, guid: 9ee6fcfb74c473847b77991c8628a891, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 9ee6fcfb74c473847b77991c8628a891, type: 3}
+      propertyPath: m_TagString
+      value: CFrente
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ee6fcfb74c473847b77991c8628a891, type: 3}
 --- !u!4 &617987410 stripped
@@ -1136,8 +1192,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.7758994, y: 2.6160681, z: 2.481355}
-  m_Center: {x: 0.1661969, y: 1.3044488, z: -16.254997}
+  m_Size: {x: 6.8304343, y: 2.6160681, z: 2.481355}
+  m_Center: {x: 0.13891846, y: 1.3044488, z: -16.254997}
 --- !u!114 &650124321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1151,6 +1207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carro: 4
+  semaforo: 0
 --- !u!1 &657253523 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 992af3319fd83c24aaae8fea9bfe2810, type: 3}
@@ -1259,9 +1316,10 @@ GameObject:
   m_Component:
   - component: {fileID: 711439651}
   - component: {fileID: 711439652}
+  - component: {fileID: 711439653}
   m_Layer: 0
   m_Name: ColliderS2
-  m_TagString: Untagged
+  m_TagString: SSalida
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1274,7 +1332,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 711439650}
   m_LocalRotation: {x: -0, y: 0.7115418, z: -0, w: 0.7026439}
-  m_LocalPosition: {x: 312, y: -524.42944, z: 620}
+  m_LocalPosition: {x: 312, y: -603, z: 620}
   m_LocalScale: {x: 100, y: 100.000015, z: 100}
   m_Children: []
   m_Father: {fileID: 403492977}
@@ -1293,6 +1351,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.049792, y: 1, z: 3.1433883}
   m_Center: {x: -0.017303925, y: 0, z: 1.0716976}
+--- !u!54 &711439653
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711439650}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &731475825
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,7 +1379,7 @@ GameObject:
   - component: {fileID: 731475826}
   m_Layer: 0
   m_Name: ColliderC2
-  m_TagString: Untagged
+  m_TagString: CAtras
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1331,7 +1405,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731475825}
   m_LocalRotation: {x: 0, y: 0.7115418, z: 0, w: 0.7026439}
-  m_LocalPosition: {x: -6644, y: 2403, z: 13897}
+  m_LocalPosition: {x: -6672, y: 2403, z: 11658}
   m_LocalScale: {x: 100.00003, y: 100.000015, z: 100.00003}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1346,7 +1420,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2a051df060cff1942a6936afd7145a88, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a051df060cff1942a6936afd7145a88, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1390,7 +1464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2a051df060cff1942a6936afd7145a88, type: 3}
       propertyPath: m_Name
-      value: traffic_light_ped (2)
+      value: Semaforo3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a051df060cff1942a6936afd7145a88, type: 3}
@@ -1404,9 +1478,10 @@ GameObject:
   m_Component:
   - component: {fileID: 934492822}
   - component: {fileID: 934492823}
+  - component: {fileID: 934492824}
   m_Layer: 0
   m_Name: ColliderE2
-  m_TagString: Untagged
+  m_TagString: SEntrada
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1419,7 +1494,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 934492821}
   m_LocalRotation: {x: -0, y: 0.7115418, z: -0, w: 0.7026439}
-  m_LocalPosition: {x: -1441, y: -524.42944, z: 642}
+  m_LocalPosition: {x: -1441, y: -603, z: 642}
   m_LocalScale: {x: 100, y: 100.000015, z: 100}
   m_Children: []
   m_Father: {fileID: 66260979}
@@ -1438,6 +1513,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.049792, y: 1, z: 3.1433883}
   m_Center: {x: -0.017303925, y: 0, z: 1.0716976}
+--- !u!54 &934492824
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934492821}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &954590039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1456,6 +1547,10 @@ PrefabInstance:
     - target: {fileID: 2195761017458171131, guid: 00786fab39b0e2646b52b8cffdd9a78c, type: 3}
       propertyPath: m_Name
       value: Car3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2195761017458171131, guid: 00786fab39b0e2646b52b8cffdd9a78c, type: 3}
+      propertyPath: m_TagString
+      value: CFrente
       objectReference: {fileID: 0}
     - target: {fileID: 2195761017458171132, guid: 00786fab39b0e2646b52b8cffdd9a78c, type: 3}
       propertyPath: m_RootOrder
@@ -17045,6 +17140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carro: 2
+  semaforo: 2
 --- !u!1 &1444047413
 GameObject:
   m_ObjectHideFlags: 0
@@ -17112,7 +17208,7 @@ GameObject:
   - component: {fileID: 1523973856}
   m_Layer: 0
   m_Name: ColliderC4
-  m_TagString: Untagged
+  m_TagString: CAtras
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17138,7 +17234,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1523973855}
   m_LocalRotation: {x: 0, y: 0.7115418, z: 0, w: 0.7026439}
-  m_LocalPosition: {x: -5929, y: 2403, z: 9352}
+  m_LocalPosition: {x: -9770, y: 2403, z: 9308}
   m_LocalScale: {x: 100.00003, y: 100.000015, z: 100.00003}
   m_Children: []
   m_Father: {fileID: 0}
@@ -17215,6 +17311,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car6
       objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 796d2f403a672f64e9d7dbb0ae388da6, type: 3}
+      propertyPath: m_TagString
+      value: CFrente
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 796d2f403a672f64e9d7dbb0ae388da6, type: 3}
 --- !u!4 &1671093746 stripped
@@ -17234,7 +17334,7 @@ GameObject:
   - component: {fileID: 1679737679}
   m_Layer: 0
   m_Name: ColliderC5
-  m_TagString: Untagged
+  m_TagString: CAtras
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17247,7 +17347,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1679737677}
   m_LocalRotation: {x: 0, y: 0.7115418, z: 0, w: 0.7026439}
-  m_LocalPosition: {x: -4101, y: 2403, z: 9627}
+  m_LocalPosition: {x: -2773, y: 2403, z: 9627}
   m_LocalScale: {x: 100.00003, y: 100.000015, z: 100.00003}
   m_Children: []
   m_Father: {fileID: 0}
@@ -17278,7 +17378,7 @@ GameObject:
   - component: {fileID: 1715249217}
   m_Layer: 0
   m_Name: ColwliderC3
-  m_TagString: Untagged
+  m_TagString: CAtras
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17337,10 +17437,10 @@ Transform:
   m_LocalPosition: {x: -6426.277, y: 2053.9873, z: 8795.176}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2032369172}
   - {fileID: 1859707706}
   - {fileID: 617987410}
   - {fileID: 1671093746}
-  - {fileID: 2032369172}
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17375,6 +17475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carro: 5
+  semaforo: 3
 --- !u!1 &1768563093 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: 9ee6fcfb74c473847b77991c8628a891, type: 3}
@@ -17406,6 +17507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carro: 3
+  semaforo: 2
 --- !u!1 &1795434093
 GameObject:
   m_ObjectHideFlags: 0
@@ -17416,9 +17518,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1795434094}
   - component: {fileID: 1795434095}
+  - component: {fileID: 1795434096}
   m_Layer: 0
   m_Name: ColliderE3
-  m_TagString: Untagged
+  m_TagString: SEntrada
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17431,7 +17534,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795434093}
   m_LocalRotation: {x: -0, y: 0.7115418, z: -0, w: 0.7026439}
-  m_LocalPosition: {x: -305, y: -592.42944, z: -103}
+  m_LocalPosition: {x: -305, y: -603, z: -103}
   m_LocalScale: {x: 100.00002, y: 100.000015, z: 100.00002}
   m_Children: []
   m_Father: {fileID: 66260979}
@@ -17450,6 +17553,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.1944647, y: 1, z: 1.9670888}
   m_Center: {x: 0.5550339, y: 0, z: 0.8526736}
+--- !u!54 &1795434096
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795434093}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1819865809
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17521,6 +17640,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car5
       objectReference: {fileID: 0}
+    - target: {fileID: 1151388028547126963, guid: 992af3319fd83c24aaae8fea9bfe2810, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 992af3319fd83c24aaae8fea9bfe2810, type: 3}
+      propertyPath: m_TagString
+      value: CFrente
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 992af3319fd83c24aaae8fea9bfe2810, type: 3}
 --- !u!4 &1859707706 stripped
@@ -17538,9 +17665,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1891650008}
   - component: {fileID: 1891650009}
+  - component: {fileID: 1891650010}
   m_Layer: 0
   m_Name: ColliderS1
-  m_TagString: Untagged
+  m_TagString: SSalida
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17553,7 +17681,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891650007}
   m_LocalRotation: {x: -0, y: 0.7115418, z: -0, w: 0.7026439}
-  m_LocalPosition: {x: -1436, y: -524.42944, z: 1024}
+  m_LocalPosition: {x: -1436, y: -603, z: 1024}
   m_LocalScale: {x: 100.000015, y: 100.000015, z: 100.000015}
   m_Children: []
   m_Father: {fileID: 403492977}
@@ -17572,6 +17700,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.049792, y: 1, z: 3.1433883}
   m_Center: {x: -0.017303925, y: 0, z: 1.0716976}
+--- !u!54 &1891650010
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891650007}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1920599575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17581,7 +17725,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2a051df060cff1942a6936afd7145a88, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a051df060cff1942a6936afd7145a88, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17625,7 +17769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2a051df060cff1942a6936afd7145a88, type: 3}
       propertyPath: m_Name
-      value: traffic_light_ped (1)
+      value: Semaforo2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a051df060cff1942a6936afd7145a88, type: 3}
@@ -17644,9 +17788,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2045640412}
   - component: {fileID: 2045640413}
+  - component: {fileID: 2045640414}
   m_Layer: 0
   m_Name: ColliderE4
-  m_TagString: Untagged
+  m_TagString: SEntrada
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17659,7 +17804,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2045640411}
   m_LocalRotation: {x: -0, y: 0.7115418, z: -0, w: 0.7026439}
-  m_LocalPosition: {x: -691, y: -592.42944, z: 1822}
+  m_LocalPosition: {x: -691, y: -603, z: 1822}
   m_LocalScale: {x: 100, y: 100.000015, z: 100}
   m_Children: []
   m_Father: {fileID: 66260979}
@@ -17678,6 +17823,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.1944647, y: 1, z: 1.9670888}
   m_Center: {x: 0.5550339, y: 0, z: 0.8526736}
+--- !u!54 &2045640414
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045640411}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2143182365
 GameObject:
   m_ObjectHideFlags: 0
@@ -17688,9 +17849,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2143182366}
   - component: {fileID: 2143182367}
+  - component: {fileID: 2143182368}
   m_Layer: 0
   m_Name: ColliderS3
-  m_TagString: Untagged
+  m_TagString: SSalida
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17703,7 +17865,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143182365}
   m_LocalRotation: {x: -0, y: 0.7115418, z: -0, w: 0.7026439}
-  m_LocalPosition: {x: -384, y: -592.42944, z: 1818}
+  m_LocalPosition: {x: -384, y: -603, z: 1818}
   m_LocalScale: {x: 100.000015, y: 100.000015, z: 100.000015}
   m_Children: []
   m_Father: {fileID: 403492977}
@@ -17722,3 +17884,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.1944647, y: 1, z: 1.9670888}
   m_Center: {x: 0.5550339, y: 0, z: 0.8526736}
+--- !u!54 &2143182368
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143182365}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

@@ -36,8 +36,8 @@ class CarAgent(Agent):
             Informar
         """
         # Dependiendo del estado se cambia su velocidad en la dirección del carro
-        #velocidad = randint(1,4)
-        velocidad = 1
+        velocidad = random.uniform(0.1,1.52)
+        #velocidad = 1
         if self.direccion == 0:
             self.pos[0] = self.estado * velocidad
         elif self.direccion == 1:

@@ -144,12 +144,13 @@ class Server(BaseHTTPRequestHandler):
 
                 # Si hay un semaforo en verde, cambiamos el estado a rojo
                 elif not tieneCochesCruzando:
-                    self.model.schedule.agents[semaforoActual + 6].estado = "rojo"
+                    self.model.schedule.agents[semaforoActual + 6].estado = "amarillo"
                     if semaforoActual == 0 or semaforoActual == 1:
-                        self.model.schedule.agents[semaforoActual + 4].estado = "rojo"
+                        self.model.schedule.agents[semaforoActual + 4].estado = "amarillo"
 
                     elif semaforoActual == 2 or semaforoActual == 3:
-                        self.model.schedule.agents[semaforoActual + 4].estado = "rojo"
+                        self.model.schedule.agents[semaforoActual + 4].estado = "amarillo"
+
                     # Revisamos si hay un semaforo no adyacente con vehículos esperando para cambiar su estado
                     for i in range(6, 10):
                         if self.model.schedule.agents[i].cruzando > 0:

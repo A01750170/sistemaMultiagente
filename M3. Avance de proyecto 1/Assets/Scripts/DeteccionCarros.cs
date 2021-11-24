@@ -40,10 +40,10 @@ public class DeteccionCarros : MonoBehaviour
         datos.semaforo = semaforo;
         datos.cruza = 1;
         if(entrada){
-            url = "http://localhost:8080/semaforoEntrada";
+            url = "https://trafficandoagentes.us-south.cf.appdomain.cloud/semaforoEntrada";
         }
         else{
-            url = "http://localhost:8080/semaforoSalida";
+            url = "https://trafficandoagentes.us-south.cf.appdomain.cloud/semaforoSalida";
         }
         string json = JsonUtility.ToJson(datos);
         var request = new UnityWebRequest(url,"POST");

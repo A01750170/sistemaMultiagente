@@ -23,7 +23,7 @@ public class WebClient : MonoBehaviour
     // IEnumerator - yield return
     IEnumerator getDataCarro()
     {
-        string url = "http://localhost:8080/carro";
+        string url = "https://trafficandoagentes.us-south.cf.appdomain.cloud/carro";
         using (UnityWebRequest www = UnityWebRequest.Get(url))
         {
             //byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes();
@@ -44,7 +44,7 @@ public class WebClient : MonoBehaviour
                 //Debug.Log("Form upload complete!");
                 //Debug.Log(tPos);
                 //string json = JsonConvert.SerializeObject(www.downloadHandler.text);
-                Dictionary<string, List<Dictionary<string,int>>> pos = JsonConvert.DeserializeObject<Dictionary<string, List<Dictionary<string,int>>>>(www.downloadHandler.text);
+                Dictionary<string, List<Dictionary<string,float>>> pos = JsonConvert.DeserializeObject<Dictionary<string, List<Dictionary<string,float>>>>(www.downloadHandler.text);
                 //Debug.Log("X");
                 //Debug.Log(pos["positions"][1]["x"]);
                 //Debug.Log("Y");
@@ -76,7 +76,7 @@ public class WebClient : MonoBehaviour
 
     IEnumerator getDataSemaforo()
     {
-        string url = "http://localhost:8080/semaforo";
+        string url = "https://trafficandoagentes.us-south.cf.appdomain.cloud/semaforo";
         using (UnityWebRequest www = UnityWebRequest.Get(url))
         {
             //byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes();
@@ -97,7 +97,7 @@ public class WebClient : MonoBehaviour
                 //Debug.Log("Form upload complete!");
                 //Debug.Log(tPos);
                 //string json = JsonConvert.SerializeObject(www.downloadHandler.text);
-                Dictionary<string, List<Dictionary<string,int>>> pos = JsonConvert.DeserializeObject<Dictionary<string, List<Dictionary<string,int>>>>(www.downloadHandler.text);
+                Dictionary<string, List<Dictionary<string,float>>> pos = JsonConvert.DeserializeObject<Dictionary<string, List<Dictionary<string,float>>>>(www.downloadHandler.text);
                 //Debug.Log("X");
                 //Debug.Log(pos["positions"][1]["x"]);
                 //Debug.Log("Y");
