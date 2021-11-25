@@ -17,7 +17,8 @@ public class DeteccionCarros : MonoBehaviour
         datosCarro datos;
         datos.carro = carro;
         datos.estado = estado;
-        string url = "http://localhost:8080/carro";
+        //string url = "https://trafficandoagentes.us-south.cf.appdomain.cloud/carro";
+        string url = "localhost:8080/carro";
         string json = JsonUtility.ToJson(datos);
         var request = new UnityWebRequest(url,"POST");
         byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
@@ -40,10 +41,12 @@ public class DeteccionCarros : MonoBehaviour
         datos.semaforo = semaforo;
         datos.cruza = 1;
         if(entrada){
-            url = "https://trafficandoagentes.us-south.cf.appdomain.cloud/semaforoEntrada";
+            //url = "https://trafficandoagentes.us-south.cf.appdomain.cloud/semaforoEntrada";
+            url = "localhost:8080/semaforoEntrada";
         }
         else{
-            url = "https://trafficandoagentes.us-south.cf.appdomain.cloud/semaforoSalida";
+            //url = "https://trafficandoagentes.us-south.cf.appdomain.cloud/semaforoSalida";
+            url = "localhost:8080/semaforoSalida";
         }
         string json = JsonUtility.ToJson(datos);
         var request = new UnityWebRequest(url,"POST");
