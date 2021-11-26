@@ -8,6 +8,8 @@ TagManager:
   - SSalida
   - CFrente
   - CAtras
+  - Vuelta
+  - CVuelta
   layers:
   - Default
   - TransparentFX

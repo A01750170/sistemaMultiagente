@@ -11,9 +11,26 @@ class CarAgent(Agent):
         self.cruzando = 0 #Fuera del cruce 0, En el cruce 1, Cruzado 3
         self.pos = [0, 0, 0]
         self.direccion = direccion #x 0, -x 1, z 2, -z 3
-        #self.sentido = 3 
+        vuelta = randint(0,80)
+        if vuelta <= 40:
+            self.vuelta = 1
+        else:
+            self.vuelta = 0
 
-    
+    def darVuelta(self):
+        self.pos = [0, 0, 0]
+        if self.direccion == 0:
+            self.direccion = 3
+
+        elif self.direccion == 1:
+            self.direccion = 2
+
+        elif self.direccion == 2:
+            self.direccion = 0
+
+        elif self.direccion == 3:
+            self.direccion = 1
+
     def step(self):
         """
         Medir distancia entre carro y carro
@@ -38,6 +55,7 @@ class CarAgent(Agent):
         # Dependiendo del estado se cambia su velocidad en la dirección del carro
         #velocidad = random.uniform(0.1,1.52)
         velocidad = 1
+        self.pos = [0, 0, 0]
         if self.direccion == 0:
             self.pos[0] = self.estado * velocidad
         elif self.direccion == 1:

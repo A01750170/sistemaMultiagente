@@ -16,6 +16,7 @@ def positionsToJSON(ps):
         }
         posDICT.append(pos)
     return json.dumps(posDICT)
+
 def semaforosToJSON(ps):
     posDICT = []
     semaforo = 0
@@ -27,6 +28,18 @@ def semaforosToJSON(ps):
                 "cruzando" : ps[i].cruzando
             }
             semaforo += 1
+        except:
+            pass
+        posDICT.append(pos)
+    return json.dumps(posDICT)
+
+def vueltasToJSON(ps):
+    posDICT = []
+    for i in range(0,6):
+        try:
+            pos = {
+                "vuelta": ps[i].vuelta,
+            }
         except:
             pass
         posDICT.append(pos)
@@ -57,7 +70,8 @@ class Server(BaseHTTPRequestHandler):
                         self.model.schedule.agents[iCarro].estado = 1
                 elif semaforo.estado == "rojo":
                     for iCarro in self.cars[i-6]:
-                        self.model.schedule.agents[iCarro].estado = 0
+                        if self.model.schedule.agents[iCarro].vuelta == 0:
+                            self.model.schedule.agents[iCarro].estado = 0
 
 
             # Enviamos las posiciones
@@ -66,6 +80,14 @@ class Server(BaseHTTPRequestHandler):
                 self._set_response()
                 resp = "{\"positions\":" + positionsToJSON(self.model.positions) + "}"
                 self.wfile.write(resp.encode('utf-8'))
+
+                # Enviamos la configuración de las vueltas
+            elif self.path.endswith("/carroVuelta"):
+                self.model.step()
+                self._set_response()
+                resp = "{\"configVueltas\":" + vueltasToJSON(self.model.schedule.agents) + "}"
+                self.wfile.write(resp.encode('utf-8'))
+
             elif self.path.endswith("semaforo"):
                 self.model.step()
                 self._set_response()
@@ -96,7 +118,8 @@ class Server(BaseHTTPRequestHandler):
                 resp = "Done"
                 print(post_data)
                 puedePasar = True
-                self.model.schedule.agents[semaforoActual + 6].cruzando += cochesCruzando
+                if self.model.schedule.agents[post_data["carro"]].vuelta == 0:
+                    self.model.schedule.agents[semaforoActual + 6].cruzando += cochesCruzando
                 # Revisamos si hay algun otro semaforo en verde
                 for i in range(6,10):
                     # Si lo hay, lo guardamos en una variable auxiliar
@@ -123,7 +146,9 @@ class Server(BaseHTTPRequestHandler):
                 resp = "Done"
                 print(post_data)
                 tieneCochesCruzando = False
-                self.model.schedule.agents[semaforoActual + 6].cruzando -= cochesCruzando
+                if self.model.schedule.agents[post_data["carro"]].vuelta == 0:
+                    self.model.schedule.agents[semaforoActual + 6].cruzando -= cochesCruzando
+
                 # Revisar si el semaforo adyacente tiene coches cruzando
                 for i in range(6, 10):
                     # Si lo hay, lo guardamos en una variable auxiliar
@@ -166,6 +191,14 @@ class Server(BaseHTTPRequestHandler):
                             self.model.schedule.agents[i].estado = "amarillo"
                     self.wfile.write(resp.encode('utf-8'))
 
+            elif self.path.endswith("/darVuelta"):
+                content_length = int(self.headers['Content-Length'])
+                post_data = json.loads(self.rfile.read(content_length))
+                self._set_response()
+                resp = "Done"
+                print(post_data)
+                self.model.schedule.agents[post_data["carro"]].darVuelta()
+                self.wfile.write(resp.encode('utf-8'))
 
         except IOError:
             self.send_error(404, "Error")
