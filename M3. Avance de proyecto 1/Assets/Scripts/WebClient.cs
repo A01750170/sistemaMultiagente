@@ -102,12 +102,7 @@ public class WebClient : MonoBehaviour
         //StartCoroutine(getDataCarro());
         //transform.localPosition
         contador = 0;
-        carro1.transform.position = new Vector3(-584, 31, 5192);
-        carro2.transform.position = new Vector3(-4885, 31, 7008);
-        carro3.transform.position = new Vector3(-7321,31, 4725);
-        carro4.transform.position = new Vector3(-8930,31, 4725);
-        carro5.transform.position = new Vector3(-2731, 31, 5202);
-        carro6.transform.position = new Vector3(-4385, 31, 2319);
+        carro4.transform.position = new Vector3(1973,186,1118);
         
         Posiciones.carro1 = carro1.transform.position;
         Posiciones.carro2 = carro2.transform.position;
