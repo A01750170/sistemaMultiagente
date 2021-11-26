@@ -14,7 +14,17 @@ public class DeteccionCarros : MonoBehaviour
     public int semaforo;
     private int rotar;
 
+    private Vector3 carro1Pos;
+    private Vector3 carro2Pos;
+    private Vector3 carro3Pos;
+    private Vector3 carro4Pos;
+    private Vector3 carro5Pos;
+    private Vector3 carro6Pos;
+
+    private Posiciones posCarros;
+
     void Start(){
+        posCarros = new Posiciones();
         StartCoroutine(getVuelta());
     }
 
@@ -59,6 +69,38 @@ public class DeteccionCarros : MonoBehaviour
         request.SetRequestHeader("Content-Type", "application/json");
         yield return request.SendWebRequest();
 
+        if(carro == 0){
+            transform.rotation = Quaternion.LookRotation(transform.position - Posiciones.carro1);
+            Posiciones.carro1 = transform.position;
+        }
+
+        else if(carro == 1){
+            transform.rotation = Quaternion.LookRotation(transform.position - Posiciones.carro2);
+            Posiciones.carro2 = transform.position;
+        }
+        
+        else if(carro == 2){
+            transform.rotation = Quaternion.LookRotation(transform.position - Posiciones.carro3);
+            Posiciones.carro3 = transform.position;
+        }
+
+        else if(carro == 3){
+            transform.rotation = Quaternion.LookRotation(transform.position - Posiciones.carro4);
+            Posiciones.carro4 = transform.position;
+        }
+
+        else if(carro == 4){
+            transform.rotation = Quaternion.LookRotation(transform.position - Posiciones.carro5);
+            Posiciones.carro5 = transform.position;
+        }
+
+        else if(carro == 5){
+            transform.rotation = Quaternion.LookRotation(transform.position - Posiciones.carro6);
+            Posiciones.carro6 = transform.position;
+        }
+
+        
+        
         
     }
 
@@ -128,10 +170,11 @@ public class DeteccionCarros : MonoBehaviour
             StartCoroutine(postDataSemaforo(semaforo, false));
         }
         if(this.tag == "CFrente" && other.tag == "Vuelta" && rotar == 1){
-            float degrees = 90;
-            Vector3 to = new Vector3(0, degrees, 0);
-            transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles, to, Time.deltaTime);
+            //float degrees = 90;
+            //Vector3 to = new Vector3(0, degrees, 0);
+            //transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles, to, Time.deltaTime);
             StartCoroutine(postDarVuelta());
+            //srotar = 0;
             //}
         }
         

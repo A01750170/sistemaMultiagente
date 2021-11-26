@@ -20,6 +20,14 @@ public class WebClient : MonoBehaviour
     public GameObject colliderC6;
     private List<int> semaforos;
     private int contador;
+    private Vector3 carro1Pos;
+    private Vector3 carro2Pos;
+    private Vector3 carro3Pos;
+    private Vector3 carro4Pos;
+    private Vector3 carro5Pos;
+    private Vector3 carro6Pos;
+    private Posiciones posCarros;
+
 
     // IEnumerator - yield return
     IEnumerator getDataCarro()
@@ -46,26 +54,36 @@ public class WebClient : MonoBehaviour
                 // Se actualiza la posición del carro 1
                 carro1.transform.position += new Vector3(pos["positions"][0]["x"],pos["positions"][0]["y"],pos["positions"][0]["z"]);
                 colliderC1.transform.position += new Vector3(pos["positions"][0]["x"],pos["positions"][0]["y"],pos["positions"][0]["z"]);
+                
 
                 // Se actualiza la posición del carro 2
+                
                 carro2.transform.position += new Vector3(pos["positions"][1]["x"],pos["positions"][1]["y"],pos["positions"][1]["z"]);
                 colliderC2.transform.position += new Vector3(pos["positions"][1]["x"],pos["positions"][1]["y"],pos["positions"][1]["z"]);
+                
 
                 // Se actualiza la posición del carro 3
+                
                 carro3.transform.position += new Vector3(pos["positions"][2]["x"],pos["positions"][2]["y"],pos["positions"][2]["z"]);
                 colliderC3.transform.position += new Vector3(pos["positions"][2]["x"],pos["positions"][2]["y"],pos["positions"][2]["z"]);
+                
 
                 // Se actualiza la posición del carro 4
+                
                 carro4.transform.position += new Vector3(pos["positions"][3]["x"],pos["positions"][3]["y"],pos["positions"][3]["z"]);
                 colliderC4.transform.position += new Vector3(pos["positions"][3]["x"],pos["positions"][3]["y"],pos["positions"][3]["z"]);
-
+                
                 // Se actualiza la posición del carro 5
+                
                 carro5.transform.position += new Vector3(pos["positions"][4]["x"],pos["positions"][4]["y"],pos["positions"][4]["z"]);
                 colliderC5.transform.position += new Vector3(pos["positions"][4]["x"],pos["positions"][4]["y"],pos["positions"][4]["z"]);
+                
 
                 // Se actualiza la posición del carro 6
+                
                 carro6.transform.position += new Vector3(pos["positions"][5]["x"],pos["positions"][5]["y"],pos["positions"][5]["z"]);
                 colliderC6.transform.position += new Vector3(pos["positions"][5]["x"],pos["positions"][5]["y"],pos["positions"][5]["z"]);
+           
 
 
             }
@@ -81,9 +99,18 @@ public class WebClient : MonoBehaviour
         //string json = EditorJsonUtility.ToJson(fakePos);
         //StartCoroutine(SendData(call));
         //StartCoroutine(getDataSemaforo());
-        StartCoroutine(getDataCarro());
+        //StartCoroutine(getDataCarro());
         //transform.localPosition
         contador = 0;
+        carro4.transform.position = new Vector3(1973,186,1118);
+        
+        Posiciones.carro1 = carro1.transform.position;
+        Posiciones.carro2 = carro2.transform.position;
+        Posiciones.carro3 = carro3.transform.position;
+        Posiciones.carro4 = carro4.transform.position;
+        Posiciones.carro5 = carro5.transform.position;
+        Posiciones.carro6 = carro6.transform.position;
+        
     }
 
     // Update is called once per frame

@@ -11,7 +11,7 @@ class CarAgent(Agent):
         self.cruzando = 0 #Fuera del cruce 0, En el cruce 1, Cruzado 3
         self.pos = [0, 0, 0]
         self.direccion = direccion #x 0, -x 1, z 2, -z 3
-        vuelta = randint(0,80)
+        vuelta = randint(0,40)
         if vuelta <= 40:
             self.vuelta = 1
         else:
