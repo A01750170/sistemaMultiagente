@@ -20,12 +20,6 @@ public class DeteccionCarros : MonoBehaviour
     private Vector3 carro4Pos;
     private Vector3 carro5Pos;
     private Vector3 carro6Pos;
-    public GameObject C1;
-    public GameObject C2;
-    public GameObject C3;
-    public GameObject C4;
-    public GameObject C5;
-    public GameObject C6;
 
     private Posiciones posCarros;
 
@@ -77,37 +71,31 @@ public class DeteccionCarros : MonoBehaviour
 
         if(carro == 0){
             transform.rotation = Quaternion.LookRotation(transform.position - Posiciones.carro1);
-            C1.transform.rotation = Quaternion.LookRotation(transform.position - Posiciones.carro1);
             Posiciones.carro1 = transform.position;
         }
 
         else if(carro == 1){
             transform.rotation = Quaternion.LookRotation(transform.position - Posiciones.carro2);
             Posiciones.carro2 = transform.position;
-            C2.transform.rotation = Quaternion.LookRotation(transform.position - Posiciones.carro1);
         }
         
         else if(carro == 2){
             transform.rotation = Quaternion.LookRotation(transform.position - Posiciones.carro3);
-            C3.transform.rotation = Quaternion.LookRotation(transform.position - Posiciones.carro1);
             Posiciones.carro3 = transform.position;
         }
 
         else if(carro == 3){
             transform.rotation = Quaternion.LookRotation(transform.position - Posiciones.carro4);
-            C4.transform.rotation = Quaternion.LookRotation(transform.position - Posiciones.carro1);
             Posiciones.carro4 = transform.position;
         }
 
         else if(carro == 4){
             transform.rotation = Quaternion.LookRotation(transform.position - Posiciones.carro5);
-            C5.transform.rotation = Quaternion.LookRotation(transform.position - Posiciones.carro1);
             Posiciones.carro5 = transform.position;
         }
 
         else if(carro == 5){
             transform.rotation = Quaternion.LookRotation(transform.position - Posiciones.carro6);
-            C6.transform.rotation = Quaternion.LookRotation(transform.position - Posiciones.carro1);
             Posiciones.carro6 = transform.position;
         }
 
@@ -171,8 +159,9 @@ public class DeteccionCarros : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other){
-        if((other.tag == "CFrente") || (other.tag == "CAtras")){
+        if((this.tag == "CFrente" && other.tag == "CLat") || (this.tag == "CFrente" && other.tag == "CAtras")){
             print("Frenando");
+            print(carro);
             StartCoroutine(postDataCarro(0));
         }
         if(this.tag == "CFrente" && other.tag == "SEntrada" && rotar == 0){
@@ -193,7 +182,7 @@ public class DeteccionCarros : MonoBehaviour
     }
 
     void OnTriggerExit(Collider other){
-        if((other.tag == "CFrente") || (other.tag == "CAtras")){
+        if((other.tag == "CLat") || (other.tag == "CAtras")){
             StartCoroutine(postDataCarro(1));
         }
         

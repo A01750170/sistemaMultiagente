@@ -60,18 +60,18 @@ class Server(BaseHTTPRequestHandler):
     def do_GET(self):
         try:
             # Revisamos los semaforos y actualizamos estados
-            for i in range(6,10):
-                semaforo = self.model.schedule.agents[i]
-                if semaforo.estado == "verde":
-                    for iCarro in self.cars[i-6]:
-                        self.model.schedule.agents[iCarro].estado = 1
-                elif semaforo.estado == "amarillo":
-                    for iCarro in self.cars[i-6]:
-                        self.model.schedule.agents[iCarro].estado = 1
-                elif semaforo.estado == "rojo":
-                    for iCarro in self.cars[i-6]:
-                        if self.model.schedule.agents[iCarro].vuelta == 0:
-                            self.model.schedule.agents[iCarro].estado = 0
+            #for i in range(6,10):
+#                semaforo = self.model.schedule.agents[i]
+#                if semaforo.estado == "verde":
+#                    for iCarro in self.cars[i-6]:
+#                        self.model.schedule.agents[iCarro].estado = 1
+#                elif semaforo.estado == "amarillo":
+#                    for iCarro in self.cars[i-6]:
+#                        self.model.schedule.agents[iCarro].estado = 1
+#                elif semaforo.estado == "rojo":
+#                    for iCarro in self.cars[i-6]:
+#                        if self.model.schedule.agents[iCarro].vuelta == 0:
+#                            self.model.schedule.agents[iCarro].estado = 0
 
 
             # Enviamos las posiciones
@@ -99,6 +99,12 @@ class Server(BaseHTTPRequestHandler):
 
     def do_POST(self):
         try:
+            if self.path.endswith("/reset"):
+                self.model = TrafficModel(6, 4)
+                self._set_response()
+                resp = "Reset"
+                self.wfile.write(resp.encode('utf-8'))
+
             if self.path.endswith("/carro"):
                 content_length = int(self.headers['Content-Length'])
                 post_data = json.loads(self.rfile.read(content_length))
@@ -171,10 +177,10 @@ class Server(BaseHTTPRequestHandler):
                 elif not tieneCochesCruzando:
                     self.model.schedule.agents[semaforoActual + 6].estado = "amarillo"
                     if semaforoActual == 0 or semaforoActual == 1:
-                        self.model.schedule.agents[semaforoActual + 4].estado = "amarillo"
+                        self.model.schedule.agents[semaforoActual + 6].estado = "amarillo"
 
                     elif semaforoActual == 2 or semaforoActual == 3:
-                        self.model.schedule.agents[semaforoActual + 4].estado = "amarillo"
+                        self.model.schedule.agents[semaforoActual + 6].estado = "amarillo"
 
                     # Revisamos si hay un semaforo no adyacente con vehículos esperando para cambiar su estado
                     for i in range(6, 10):
