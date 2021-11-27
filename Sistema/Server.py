@@ -64,7 +64,7 @@ class Server(BaseHTTPRequestHandler):
                 semaforo = self.model.schedule.agents[i]
                 if semaforo.estado == "verde":
                     for iCarro in self.cars[i-6]:
-                        self.model.schedule.agents[iCarro].estado = 2
+                        self.model.schedule.agents[iCarro].estado = 1
                 elif semaforo.estado == "amarillo":
                     for iCarro in self.cars[i-6]:
                         self.model.schedule.agents[iCarro].estado = 1
