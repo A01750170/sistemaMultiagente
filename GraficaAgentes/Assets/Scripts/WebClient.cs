@@ -18,6 +18,7 @@ public class WebClient : MonoBehaviour
     public GameObject colliderC5;
     public GameObject carro6;
     public GameObject colliderC6;
+   
     private List<int> semaforos;
     private int contador;
     private Vector3 carro1Pos;

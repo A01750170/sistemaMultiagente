@@ -22,10 +22,128 @@ public class DeteccionCarros : MonoBehaviour
     private Vector3 carro6Pos;
 
     private Posiciones posCarros;
+     // Direccionales
+    public GameObject direccional1;
+    public GameObject direccional2;
+    public GameObject direccional3;
+    public GameObject direccional4;
+    public GameObject direccional5;
+    public GameObject direccional6;
+    private int contador_direccional = 0;
+    private int ENCENDIDO = 50;
+    private int APAGADO = 100;
 
     void Start(){
         posCarros = new Posiciones();
         StartCoroutine(getVuelta());
+        
+    }
+
+    void Update(){
+        if (rotar == 1){
+            if(carro == 0){
+             Material material = direccional1.GetComponent<Renderer>().material;
+            if (contador_direccional == ENCENDIDO){
+                    //mat1.SetColor("_EmissionColor", Color.yellow);
+                    material.EnableKeyword("_EMISSION");
+                    contador_direccional += 1;
+                }
+                else if (contador_direccional == APAGADO){
+                    material.DisableKeyword("_EMISSION");
+                    contador_direccional = 0;
+                }
+                else{
+                    contador_direccional += 1;
+                    
+                }
+            }
+
+            else if(carro == 1){
+                Material material = direccional2.GetComponent<Renderer>().material;
+                if (contador_direccional == ENCENDIDO){
+                    //mat1.SetColor("_EmissionColor", Color.yellow);
+                    material.EnableKeyword("_EMISSION");
+                    contador_direccional += 1;
+                }
+                else if (contador_direccional == APAGADO){
+                    material.DisableKeyword("_EMISSION");
+                    contador_direccional = 0;
+                }
+                else{
+                    contador_direccional += 1;
+                    
+                }
+            }
+            
+            else if(carro == 2){
+                Material material = direccional3.GetComponent<Renderer>().material;
+                if (contador_direccional == ENCENDIDO){
+                    //mat1.SetColor("_EmissionColor", Color.yellow);
+                    material.EnableKeyword("_EMISSION");
+                    contador_direccional += 1;
+                }
+                else if (contador_direccional == APAGADO){
+                    material.DisableKeyword("_EMISSION");
+                    contador_direccional = 0;
+                }
+                else{
+                    contador_direccional += 1;
+                    
+                }
+            }
+
+            else if(carro == 3){
+                Material material = direccional4.GetComponent<Renderer>().material;
+                if (contador_direccional == ENCENDIDO){
+                    //mat1.SetColor("_EmissionColor", Color.yellow);
+                    material.EnableKeyword("_EMISSION");
+                    contador_direccional += 1;
+                }
+                else if (contador_direccional == APAGADO){
+                    material.DisableKeyword("_EMISSION");
+                    contador_direccional = 0;
+                }
+                else{
+                    contador_direccional += 1;
+                    
+                }
+            }
+
+            else if(carro == 4){
+                Material material = direccional5.GetComponent<Renderer>().material;
+                if (contador_direccional == ENCENDIDO){
+                    //mat1.SetColor("_EmissionColor", Color.yellow);
+                    material.EnableKeyword("_EMISSION");
+                    contador_direccional += 1;
+                }
+                else if (contador_direccional == APAGADO){
+                    material.DisableKeyword("_EMISSION");
+                    contador_direccional = 0;
+                }
+                else{
+                    contador_direccional += 1;
+                    
+                }
+            }
+
+            else if(carro == 5){
+                Material material = direccional6.GetComponent<Renderer>().material;
+                if (contador_direccional == ENCENDIDO){
+                    //mat1.SetColor("_EmissionColor", Color.yellow);
+                    material.EnableKeyword("_EMISSION");
+                    contador_direccional += 1;
+                }
+                else if (contador_direccional == APAGADO){
+                    material.DisableKeyword("_EMISSION");
+                    contador_direccional = 0;
+                }
+                else{
+                    contador_direccional += 1;
+                    
+                }
+            }
+        }
+         
     }
 
     
@@ -48,7 +166,6 @@ public class DeteccionCarros : MonoBehaviour
                 Dictionary<string, List<Dictionary<string,int>>> pos = JsonConvert.DeserializeObject<Dictionary<string, List<Dictionary<string,int>>>>(www.downloadHandler.text);
                 // Se actualiza la posición del carro 1
                 rotar = pos["configVueltas"][carro]["vuelta"];
-                print(pos["configVueltas"][carro]["vuelta"]);
               
             }
         }
