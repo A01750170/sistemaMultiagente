@@ -47,7 +47,8 @@ public class DeteccionCarros : MonoBehaviour
             {
                 Dictionary<string, List<Dictionary<string,int>>> pos = JsonConvert.DeserializeObject<Dictionary<string, List<Dictionary<string,int>>>>(www.downloadHandler.text);
                 // Se actualiza la posición del carro 1
-                this.rotar = pos["configVueltas"][carro]["vuelta"];
+                rotar = pos["configVueltas"][carro]["vuelta"];
+                print(pos["configVueltas"][carro]["vuelta"]);
               
             }
         }

@@ -60,18 +60,24 @@ class Server(BaseHTTPRequestHandler):
     def do_GET(self):
         try:
             # Revisamos los semaforos y actualizamos estados
-            #for i in range(6,10):
-#                semaforo = self.model.schedule.agents[i]
-#                if semaforo.estado == "verde":
-#                    for iCarro in self.cars[i-6]:
-#                        self.model.schedule.agents[iCarro].estado = 1
-#                elif semaforo.estado == "amarillo":
-#                    for iCarro in self.cars[i-6]:
-#                        self.model.schedule.agents[iCarro].estado = 1
-#                elif semaforo.estado == "rojo":
-#                    for iCarro in self.cars[i-6]:
-#                        if self.model.schedule.agents[iCarro].vuelta == 0:
-#                            self.model.schedule.agents[iCarro].estado = 0
+            for i in range(6,10):
+                semaforo = self.model.schedule.agents[i]
+                if semaforo.estado == "verde":
+                    for iCarro in self.cars[i-6]:
+                        if self.model.schedule.agents[iCarro].forzar_alto == 0:
+                            self.model.schedule.agents[iCarro].estado = 1
+                        else:
+                            self.model.schedule.agents[iCarro].estado = 0
+                elif semaforo.estado == "amarillo":
+                    for iCarro in self.cars[i-6]:
+                        if self.model.schedule.agents[iCarro].forzar_alto == 0:
+                            self.model.schedule.agents[iCarro].estado = 1
+                        else:
+                            self.model.schedule.agents[iCarro].estado = 0
+                elif semaforo.estado == "rojo":
+                    for iCarro in self.cars[i-6]:
+                        if self.model.schedule.agents[iCarro].vuelta == 0:
+                            self.model.schedule.agents[iCarro].estado = 0
 
 
             # Enviamos las posiciones
@@ -111,7 +117,15 @@ class Server(BaseHTTPRequestHandler):
                 self._set_response()
                 resp = "Done"
                 print(post_data)
-                self.model.schedule.agents[post_data["carro"]].estado = post_data["estado"]
+                if self.model.schedule.agents[post_data["carro"]].vuelta == 1 and post_data["estado"] == 0:
+                    self.model.schedule.agents[post_data["carro"]].forzar_alto = 1
+                    self.model.schedule.agents[post_data["carro"]].estado = post_data["estado"]
+                elif self.model.schedule.agents[post_data["carro"]].vuelta == 1 and post_data["estado"] == 1:
+                    self.model.schedule.agents[post_data["carro"]].forzar_alto = 0
+                    self.model.schedule.agents[post_data["carro"]].estado = post_data["estado"]
+                else:
+                    self.model.schedule.agents[post_data["carro"]].estado = post_data["estado"]
+
                 self.wfile.write(resp.encode('utf-8'))
 
             # Cuando cruza un carro, al semáforo se le suma la cantidad de coches que están cruzando
