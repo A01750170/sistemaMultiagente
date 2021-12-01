@@ -196,6 +196,8 @@ class Server(BaseHTTPRequestHandler):
                         self.model.schedule.agents[i].estado == "amarillo"
                     self.model.schedule.agents[semaforosRojos[0]].estado == "verde"
 
+
+
                 # Si tiene coches cruzando, ambos semaforos se quedan en verde
                 if tieneCochesCruzando:
                     self.model.schedule.agents[semaforoActual + 6].estado = "verde"
