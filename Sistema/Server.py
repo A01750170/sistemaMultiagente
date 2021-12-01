@@ -100,27 +100,27 @@ class Server(BaseHTTPRequestHandler):
                 #resp = "{\"Coches Cruzando\":" + str(self.model.schedule.agents[6].cruzando) + "}"
                 resp = "{\"semaforos\":" + semaforosToJSON(self.model.schedule.agents) + "}"
                 self.wfile.write(resp.encode('utf-8'))
+
+            elif self.path.endswith("/reset"):
+                Server.model.reset()
+                self._set_response()
+                resp = "Reset"
+                self.wfile.write(resp.encode('utf-8'))
         except IOError:
             self.send_error(404, "Error")
 
     def do_POST(self):
         try:
-            if self.path.endswith("/reset"):
-                self.model = TrafficModel(6, 4)
-                self._set_response()
-                resp = "Reset"
-                self.wfile.write(resp.encode('utf-8'))
-
             if self.path.endswith("/carro"):
                 content_length = int(self.headers['Content-Length'])
                 post_data = json.loads(self.rfile.read(content_length))
                 self._set_response()
                 resp = "Done"
                 print(post_data)
-                if self.model.schedule.agents[post_data["carro"]].vuelta == 1 and post_data["estado"] == 0:
+                if post_data["estado"] == 0:
                     self.model.schedule.agents[post_data["carro"]].forzar_alto = 1
                     self.model.schedule.agents[post_data["carro"]].estado = post_data["estado"]
-                elif self.model.schedule.agents[post_data["carro"]].vuelta == 1 and post_data["estado"] == 1:
+                elif  post_data["estado"] == 1:
                     self.model.schedule.agents[post_data["carro"]].forzar_alto = 0
                     self.model.schedule.agents[post_data["carro"]].estado = post_data["estado"]
                 else:
@@ -136,7 +136,6 @@ class Server(BaseHTTPRequestHandler):
                 semaforoActual = post_data["semaforo"]
                 cochesCruzando = post_data["cruza"]
                 resp = "Done"
-                print(post_data)
                 puedePasar = True
                 if self.model.schedule.agents[post_data["carro"]].vuelta == 0:
                     self.model.schedule.agents[semaforoActual + 6].cruzando += cochesCruzando
@@ -176,13 +175,27 @@ class Server(BaseHTTPRequestHandler):
                     if semaforoActual % 2 == 0:
                         if semaforoActual % 2 == 0 and semaforoAdyacente % 2 == 0 and self.model.schedule.agents[i].cruzando > 0:
                                 tieneCochesCruzando = True
-                        if semaforoActual % 2 == 0 and semaforoAdyacente % 2 == 0 and self.model.schedule.agents[i].cruzando > 0:
+                        elif semaforoActual % 2 == 0 and semaforoAdyacente % 2 == 0 and self.model.schedule.agents[i].cruzando > 0:
                                 tieneCochesCruzando = True
                     else:
                         if semaforoActual % 2 == 1 and semaforoAdyacente % 2 == 1 and self.model.schedule.agents[i].cruzando > 0:
                                 tieneCochesCruzando = True
-                        if semaforoActual % 2 == 1 and semaforoAdyacente % 2 ==  1 and self.model.schedule.agents[i].cruzando > 0:
+                        elif semaforoActual % 2 == 1 and semaforoAdyacente % 2 ==  1 and self.model.schedule.agents[i].cruzando > 0:
                                 tieneCochesCruzando = True
+
+                # Destrabamos semaforos
+                semaforosRojos = []
+                semaforosVerdes = []
+                for i in range(6,10):
+                    if self.model.schedule.agents[i].estado == "rojo":
+                        semaforosRojos.append(i)
+                    elif (self.model.schedule.agents[i].estado == "amarillo" or self.model.schedule.agents[i].estado == "verde") and self.model.schedule.agents[i].cruzando == 0:
+                        semaforosVerdes.append(i)
+                if len(semaforosVerdes) == 3:
+                    for i in semaforosVerdes:
+                        self.model.schedule.agents[i].estado == "amarillo"
+                    self.model.schedule.agents[semaforosRojos[0]].estado == "verde"
+
                 # Si tiene coches cruzando, ambos semaforos se quedan en verde
                 if tieneCochesCruzando:
                     self.model.schedule.agents[semaforoActual + 6].estado = "verde"
@@ -216,14 +229,13 @@ class Server(BaseHTTPRequestHandler):
                 post_data = json.loads(self.rfile.read(content_length))
                 self._set_response()
                 resp = "Done"
-                print(post_data)
                 self.model.schedule.agents[post_data["carro"]].darVuelta()
                 self.wfile.write(resp.encode('utf-8'))
 
         except IOError:
             self.send_error(404, "Error")
 
-def run(server_class=HTTPServer, handler_class=Server, port=8080): # 8080 para IBM CLoud
+def run(server_class=HTTPServer, handler_class=Server, port=config.PUERTO):
     logging.basicConfig(level=logging.INFO)
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)

@@ -2,6 +2,7 @@ from mesa import Agent, Model
 from mesa.time import RandomActivation
 import random
 from random import randint
+import config
 
 class CarAgent(Agent):
     def __init__(self, unique_id, model, direccion):
@@ -12,11 +13,17 @@ class CarAgent(Agent):
         self.pos = [0, 0, 0]
         self.direccion = direccion #x 0, -x 1, z 2, -z 3
         self.forzar_alto = 0
-        vuelta = randint(0,101)
-        if vuelta <= 25:
+        vuelta = randint(1,101)
+        if vuelta <= config.PROBABILIDAD_DE_DAR_VUELTA:
             self.vuelta = 1
         else:
             self.vuelta = 0
+
+        # Establece el multiplicador de velocidad
+        if config.VELOCIDAD_VARIABLE:
+            self.velocidad = random.uniform(config.VELOCIDAD_MIN, config.VELOCIDAD_MAX)
+        else:
+            self.velocidad = 1
 
     def darVuelta(self):
         self.pos = [0, 0, 0]
@@ -53,18 +60,16 @@ class CarAgent(Agent):
         Si cruzamos cruce:
             Informar
         """
-        # Dependiendo del estado se cambia su velocidad en la dirección del carro
-        #velocidad = random.uniform(0.1,1.52)
-        velocidad = 1
+
         self.pos = [0, 0, 0]
         if self.direccion == 0:
-            self.pos[0] = self.estado * velocidad
+            self.pos[0] = self.estado * self.velocidad
         elif self.direccion == 1:
-            self.pos[0] = -self.estado * velocidad
+            self.pos[0] = -self.estado * self.velocidad
         elif self.direccion == 2:
-            self.pos[1] = self.estado * velocidad
+            self.pos[1] = self.estado * self.velocidad
         elif self.direccion == 3:
-            self.pos[1] = -self.estado * velocidad
+            self.pos[1] = -self.estado * self.velocidad
 
 
 class Light(Agent):
@@ -90,6 +95,7 @@ class TrafficModel(Model):
         self.schedule = RandomActivation(self)
         self.running = True
         self.positions = []
+        self.lights = lights
         directions = [1, 3, 0, 0, 1, 2]
         for i in range(self.cars):
             car = CarAgent("Carro " + str(i), self, directions[i])
@@ -104,3 +110,21 @@ class TrafficModel(Model):
         self.schedule.step()
         for i in range(self.cars):
             self.positions[i] = self.schedule.agents[i].pos
+
+    def __del__(self):
+        print(self.__class__.__name__, "Morimdo")
+
+    def reset(self):
+        self.schedule = RandomActivation(self)
+        self.running = True
+        self.positions = []
+        lights = self.lights
+        directions = [1, 3, 0, 0, 1, 2]
+        self.schedule = RandomActivation(self)
+        for i in range(self.cars):
+            car = CarAgent("Carro " + str(i), self, directions[i])
+            self.schedule.add(car)
+            self.positions.append(car.pos)
+        for i in range(lights):
+            light = Light("Semaforo " + str(i), self)
+            self.schedule.add(light)
