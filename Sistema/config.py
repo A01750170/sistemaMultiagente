@@ -1,3 +1,17 @@
+'''
+Archivo de configuraciones del sistema, los siguientes parámetros pueden ser
+modificados para cambiar el funcionamiento y comportamiento de la simulación.
+Estos cambios solo se ven aplicados cuando se ejecuta el servidor de manera local.
+
+Autores:
+David Rodríguez Fragoso  A01748760
+Erick Hernández Silva    A01750170
+Israel Sánchez Miranda   A01378705
+Renata de Luna Flores    A1750484
+Roberto Valdez Jasso A01746863
+
+01/12/2021
+'''
 # Probabilidad de que un carro de vuelta del 1 al 100. Usa 0 para desactivar la vuelta.
 PROBABILIDAD_DE_DAR_VUELTA = 35
 
