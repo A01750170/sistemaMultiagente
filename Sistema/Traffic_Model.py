@@ -40,27 +40,6 @@ class CarAgent(Agent):
             self.direccion = 1
 
     def step(self):
-        """
-        Medir distancia entre carro y carro
-        Si carro cerca:
-            Detenerse
-        Si carro lejos:
-            Seguir avanzando
-        Medir distancia entre semáforo y carro
-        Si semáforo cerca:
-            Obtener color
-            Si color rojo:
-                Detener
-            Si color amarillo:
-                Disminuir
-            Si color verde:
-                Avanzar
-        Si estamos en cruce:
-            Informar
-        Si cruzamos cruce:
-            Informar
-        """
-
         self.pos = [0, 0, 0]
         if self.direccion == 0:
             self.pos[0] = self.estado * self.velocidad
@@ -80,9 +59,6 @@ class Light(Agent):
         self.cruzando = 0  # Numero de autos cruzando
 
     def step(self):
-        """
-        Revisa cuantos
-        """
         # Si autos cruzando, se cambia el color del semáforo
         if self.cruzando == 0:
             self.estado = "amarillo"

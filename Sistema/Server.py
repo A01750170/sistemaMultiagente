@@ -97,7 +97,6 @@ class Server(BaseHTTPRequestHandler):
             elif self.path.endswith("semaforo"):
                 self.model.step()
                 self._set_response()
-                #resp = "{\"Coches Cruzando\":" + str(self.model.schedule.agents[6].cruzando) + "}"
                 resp = "{\"semaforos\":" + semaforosToJSON(self.model.schedule.agents) + "}"
                 self.wfile.write(resp.encode('utf-8'))
 
@@ -241,10 +240,10 @@ def run(server_class=HTTPServer, handler_class=Server, port=config.PUERTO):
     logging.basicConfig(level=logging.INFO)
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)
-    logging.info("Starting httpd...\n") # HTTPD is HTTP Daemon!
+    logging.info("Starting httpd...\n") # HTTPD es HTTP Daemon
     try:
         httpd.serve_forever()
-    except KeyboardInterrupt:   # CTRL+C stops the server
+    except KeyboardInterrupt:   #El servidor se para con CTRL+C
         pass
     httpd.server_close()
     logging.info("Stopping httpd...\n")
